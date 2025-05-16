@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Dashboard } from './pages/Dashboard'
 import { ProjectPage } from './pages/ProjectPage'
 import { TeamPage } from './pages/TeamPage'
@@ -13,20 +13,18 @@ import { ThemeProvider } from './components/ThemeProvider'
 function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/projects/:id" element={<ProjectPage />} />
-            <Route path="/team" element={<TeamPage />} />
-            <Route path="/calendar" element={<CalendarPage />} />
-            <Route path="/tasks" element={<TasksPage />} />
-            <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/reports" element={<ReportsPage />} />
-            <Route path="/integrations" element={<IntegrationsPage />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/projects/:id" element={<ProjectPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/tasks" element={<TasksPage />} />
+          <Route path="/notifications" element={<NotificationsPage />} />
+          <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/integrations" element={<IntegrationsPage />} />
+        </Routes>
+      </Layout>
     </ThemeProvider>
   )
 }
