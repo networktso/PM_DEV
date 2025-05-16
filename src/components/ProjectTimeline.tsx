@@ -1,6 +1,8 @@
 import { GanttChart } from 'lucide-react'
+import { useTheme } from './ThemeProvider'
 
 export const ProjectTimeline = () => {
+  const { theme } = useTheme()
   const milestones = [
     { id: '1', name: 'Project Kickoff', start: '2023-11-01', end: '2023-11-05', progress: 100 },
     { id: '2', name: 'Design Phase', start: '2023-11-06', end: '2023-11-20', progress: 75 },
@@ -10,7 +12,7 @@ export const ProjectTimeline = () => {
   ]
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
+    <div className={`rounded-lg border ${theme === 'dark' ? 'dark:border-gray-700' : 'border-gray-200'} p-6 ${theme === 'dark' ? 'dark:bg-gray-800' : 'bg-white'}`}>
       <div className="flex items-center mb-6">
         <GanttChart className="text-indigo-600 mr-2" />
         <h2 className="text-lg font-semibold">Project Timeline</h2>
@@ -25,7 +27,7 @@ export const ProjectTimeline = () => {
                 {milestone.start} - {milestone.end}
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className={`w-full ${theme === 'dark' ? 'dark:bg-gray-700' : 'bg-gray-200'} rounded-full h-2`}>
               <div 
                 className="bg-indigo-600 h-2 rounded-full" 
                 style={{ width: `${milestone.progress}%` }}

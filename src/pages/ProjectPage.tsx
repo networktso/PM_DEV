@@ -7,6 +7,9 @@ import { CalendarView } from '../components/CalendarView'
 import { ActivityFeed } from '../components/ActivityFeed'
 import { ProjectHeader } from '../components/ProjectHeader'
 import { useTheme } from '../components/ThemeProvider'
+import { KanbanBoard } from '../components/KanbanBoard'
+import { ProjectTimeline } from '../components/ProjectTimeline'
+import { ProjectTeam } from '../components/ProjectTeam'
 
 export function ProjectPage() {
   const { id } = useParams()
@@ -19,15 +22,20 @@ export function ProjectPage() {
       <Tabs defaultValue="todos" className="w-full">
         <TabsList className={`mb-4 ${theme === 'dark' ? 'dark:bg-gray-800' : 'bg-white'}`}>
           <TabsTrigger value="todos">To-dos</TabsTrigger>
+          <TabsTrigger value="kanban">Kanban</TabsTrigger>
           <TabsTrigger value="discussions">Discussions</TabsTrigger>
           <TabsTrigger value="files">Files</TabsTrigger>
           <TabsTrigger value="calendar">Schedule</TabsTrigger>
+          <TabsTrigger value="team">Team</TabsTrigger>
           <TabsTrigger value="activity">Activity</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
 
         <TabsContent value="todos">
           <TodoList projectId={id} />
+        </TabsContent>
+        <TabsContent value="kanban">
+          <KanbanBoard />
         </TabsContent>
         <TabsContent value="discussions">
           <DiscussionList projectId={id} />
@@ -37,6 +45,16 @@ export function ProjectPage() {
         </TabsContent>
         <TabsContent value="calendar">
           <CalendarView projectId={id} />
+        </TabsContent>
+        <TabsContent value="team">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <ProjectTeam />
+            </div>
+            <div>
+              <ProjectTimeline />
+            </div>
+          </div>
         </TabsContent>
         <TabsContent value="activity">
           <ActivityFeed projectId={id} />
