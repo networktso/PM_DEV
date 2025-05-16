@@ -67,7 +67,7 @@ export const ProjectOverview = ({ projects }: ProjectOverviewProps) => {
             <div>
               <p className="text-sm text-gray-500">Total Budget</p>
               <p className="text-2xl font-semibold">
-                ${projects.reduce((sum, p) => sum + Number(p.budget.replace(/\D/g, '') / 1000, 0)}k
+                ${projects.reduce((sum, p) => sum + Number(p.budget.replace(/\D/g, '')) / 1000, 0)}k
               </p>
             </div>
           </div>
