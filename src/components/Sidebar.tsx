@@ -9,7 +9,7 @@ import {
   Bell, 
   BarChart2,
   Zap 
-} from 'react-icons/lucide-react'
+} from 'lucide-react'
 
 export function Sidebar() {
   const { theme } = useTheme()

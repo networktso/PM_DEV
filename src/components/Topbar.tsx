@@ -1,5 +1,5 @@
 import { useTheme } from './ThemeProvider'
-import { Moon, Sun, Bell, Search, User } from 'react-icons/lucide-react'
+import { Moon, Sun, Bell, Search, User } from 'lucide-react'
 
 export function Topbar() {
   const { theme, toggleTheme } = useTheme()
