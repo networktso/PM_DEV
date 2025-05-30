@@ -1,43 +1,33 @@
-import { LucideIcon } from 'lucide-react'
-import { useTheme } from '../ThemeProvider'
+import { ArrowUp, ArrowDown, AlertCircle } from 'react-icons/lucide-react'
 
-type CardProps = {
+interface CardProps {
   title: string
   value: string
-  icon: LucideIcon
+  icon: string
   trend?: 'up' | 'down' | 'steady' | 'warning'
   change?: string
 }
 
-export function Card({ title, value, icon: Icon, trend, change }: CardProps) {
-  const { theme } = useTheme()
-
-  const trendColors = {
-    up: 'text-green-500',
-    down: 'text-red-500',
-    steady: 'text-blue-500',
-    warning: 'text-yellow-500'
-  }
+export function Card({ title, value, icon, trend, change }: CardProps) {
+  const IconComponent = require(`react-icons/lucide-react`)[icon]
 
   return (
-    <div className={`rounded-xl p-6 shadow-sm ${theme === 'dark' ? 'dark:bg-gray-800' : 'bg-white'}`}>
-      <div className="flex items-center justify-between">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <div className="flex justify-between items-start">
         <div>
-          <p className={`text-sm ${theme === 'dark' ? 'dark:text-gray-400' : 'text-gray-500'}`}>{title}</p>
-          <p className="text-2xl font-bold mt-1">{value}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">{title}</p>
+          <h3 className="text-2xl font-bold mt-1 dark:text-white">{value}</h3>
         </div>
-        <div className={`p-3 rounded-lg ${theme === 'dark' ? 'dark:bg-gray-700' : 'bg-gray-100'}`}>
-          <Icon className="w-6 h-6" />
+        <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-200">
+          {IconComponent && <IconComponent size={20} />}
         </div>
       </div>
       {trend && change && (
-        <div className="mt-4 flex items-center">
-          <span className={`text-sm ${trendColors[trend]}`}>
-            {trend === 'up' && '↑'}
-            {trend === 'down' && '↓'}
-            {trend === 'warning' && '⚠'}
-            {change}
-          </span>
+        <div className={`mt-4 flex items-center text-sm ${trend === 'up' ? 'text-green-600 dark:text-green-400' : trend === 'down' ? 'text-red-600 dark:text-red-400' : trend === 'warning' ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-500 dark:text-gray-400'}`}>
+          {trend === 'up' && <ArrowUp className="mr-1" />}
+          {trend === 'down' && <ArrowDown className="mr-1" />}
+          {trend === 'warning' && <AlertCircle className="mr-1" />}
+          {change}
         </div>
       )}
     </div>

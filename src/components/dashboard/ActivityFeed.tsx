@@ -1,59 +1,69 @@
-import { useTheme } from '../ThemeProvider'
+import { Clock, CheckCircle, PlusCircle, MessageSquare } from 'react-icons/lucide-react'
 
-const activities = [
-  {
-    id: 1,
-    user: 'Alex Johnson',
-    action: 'completed',
-    task: 'Dashboard UI Design',
-    time: '2 hours ago',
-    avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg'
-  },
-  {
-    id: 2,
-    user: 'Sarah Miller',
-    action: 'commented on',
-    task: 'Project Roadmap',
-    time: '4 hours ago',
-    avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg'
-  },
-  {
-    id: 3,
-    user: 'Michael Chen',
-    action: 'started',
-    task: 'API Integration',
-    time: '6 hours ago',
-    avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg'
-  },
-  {
-    id: 4,
-    user: 'Emma Wilson',
-    action: 'updated',
-    task: 'Team Schedule',
-    time: '1 day ago',
-    avatar: 'https://images.pexels.com/photos/712521/pexels-photo-712521.jpeg'
-  }
-]
+interface ActivityItem {
+  id: number
+  user: string
+  action: string
+  project: string
+  time: string
+  icon: React.ComponentType<{ className?: string }>
+  color: string
+}
 
 export function ActivityFeed() {
-  const { theme } = useTheme()
+  const activities: ActivityItem[] = [
+    {
+      id: 1,
+      user: 'Alex Johnson',
+      action: 'completed task',
+      project: 'Website Redesign',
+      time: '10 min ago',
+      icon: CheckCircle,
+      color: 'text-green-500'
+    },
+    {
+      id: 2,
+      user: 'Sarah Miller',
+      action: 'added new task',
+      project: 'Mobile App',
+      time: '25 min ago',
+      icon: PlusCircle,
+      color: 'text-blue-500'
+    },
+    {
+      id: 3,
+      user: 'Michael Chen',
+      action: 'commented on',
+      project: 'Dashboard UI',
+      time: '1 hour ago',
+      icon: MessageSquare,
+      color: 'text-purple-500'
+    },
+    {
+      id: 4,
+      user: 'Emma Wilson',
+      action: 'started working on',
+      project: 'API Integration',
+      time: '2 hours ago',
+      icon: Clock,
+      color: 'text-yellow-500'
+    }
+  ]
 
   return (
-    <div className={`rounded-xl p-6 shadow-sm h-full ${theme === 'dark' ? 'dark:bg-gray-800' : 'bg-white'}`}>
-      <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h3 className="text-lg font-semibold mb-4 dark:text-white">Recent Activity</h3>
       <div className="space-y-4">
-        {activities.map((activity) => (
+        {activities.map(activity => (
           <div key={activity.id} className="flex items-start">
-            <img 
-              src={activity.avatar} 
-              alt={activity.user} 
-              className="w-10 h-10 rounded-full mr-3"
-            />
-            <div>
-              <p className={`text-sm ${theme === 'dark' ? 'dark:text-gray-300' : 'text-gray-700'}`}>
-                <span className="font-medium">{activity.user}</span> {activity.action} <span className="font-medium">{activity.task}</span>
+            <div className={`p-2 rounded-lg mr-3 ${activity.color} bg-opacity-20`}>
+              <activity.icon className="w-5 h-5" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm dark:text-gray-300">
+                <span className="font-medium dark:text-white">{activity.user}</span> {activity.action} <span className="font-medium dark:text-white">{activity.project}</span>
               </p>
-              <p className={`text-xs ${theme === 'dark' ? 'dark:text-gray-400' : 'text-gray-500'}`}>{activity.time}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{activity.time}</p>
             </div>
           </div>
         ))}

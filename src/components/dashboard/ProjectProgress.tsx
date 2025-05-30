@@ -1,36 +1,25 @@
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts'
-import { useTheme } from '../ThemeProvider'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 const data = [
-  { name: 'Jan', progress: 45 },
-  { name: 'Feb', progress: 60 },
-  { name: 'Mar', progress: 75 },
-  { name: 'Apr', progress: 90 },
-  { name: 'May', progress: 65 },
-  { name: 'Jun', progress: 85 },
+  { name: 'Website', progress: 75 },
+  { name: 'Mobile App', progress: 45 },
+  { name: 'Dashboard', progress: 90 },
+  { name: 'API', progress: 30 },
+  { name: 'Marketing', progress: 60 }
 ]
 
 export function ProjectProgress() {
-  const { theme } = useTheme()
-
   return (
-    <div className={`rounded-xl p-6 shadow-sm h-full ${theme === 'dark' ? 'dark:bg-gray-800' : 'bg-white'}`}>
-      <h2 className="text-lg font-semibold mb-4">Project Progress</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      <h3 className="text-lg font-semibold mb-4 dark:text-white">Project Progress</h3>
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
-            <XAxis 
-              dataKey="name" 
-              stroke={theme === 'dark' ? '#9CA3AF' : '#6B7280'} 
-            />
-            <YAxis 
-              stroke={theme === 'dark' ? '#9CA3AF' : '#6B7280'} 
-            />
-            <Bar 
-              dataKey="progress" 
-              fill={theme === 'dark' ? '#818CF8' : '#4F46E5'} 
-              radius={[4, 4, 0, 0]}
-            />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="progress" fill="#3b82f6" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
