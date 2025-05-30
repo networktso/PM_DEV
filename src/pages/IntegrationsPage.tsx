@@ -1,7 +1,7 @@
 import { IntegrationList } from '../components/IntegrationList'
 import { useTheme } from '../components/ThemeProvider'
 
-export function IntegrationsPage() {
+export default function IntegrationsPage() {
   const { theme } = useTheme()
 
   return (

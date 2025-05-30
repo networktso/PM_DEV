@@ -1,6 +1,3 @@
-import { CalendarView } from '../components/CalendarView'
-import { CalendarFilters } from '../components/CalendarFilters'
-import { CalendarSync } from '../components/CalendarSync'
 import { useTheme } from '../components/ThemeProvider'
 
 export function CalendarPage() {
@@ -8,16 +5,9 @@ export function CalendarPage() {
 
   return (
     <div className={`space-y-6 ${theme === 'dark' ? 'dark:text-white' : ''}`}>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div className="lg:col-span-3">
-          <CalendarView />
-        </div>
-        <div>
-          <CalendarFilters />
-          <div className="mt-6">
-            <CalendarSync />
-          </div>
-        </div>
+      <h1 className="text-2xl font-bold">Calendar</h1>
+      <div className={`p-6 rounded-xl shadow-sm ${theme === 'dark' ? 'dark:bg-gray-800' : 'bg-white'}`}>
+        <p>Project deadlines and events will be displayed here.</p>
       </div>
     </div>
   )

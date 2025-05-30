@@ -1,7 +1,3 @@
-import { TeamList } from '../components/TeamList'
-import { TeamInvite } from '../components/TeamInvite'
-import { TeamRoles } from '../components/TeamRoles'
-import { TeamAvailability } from '../components/TeamAvailability'
 import { useTheme } from '../components/ThemeProvider'
 
 export function TeamPage() {
@@ -9,21 +5,9 @@ export function TeamPage() {
 
   return (
     <div className={`space-y-6 ${theme === 'dark' ? 'dark:text-white' : ''}`}>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <TeamList />
-        </div>
-        <div>
-          <TeamInvite />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div>
-          <TeamRoles />
-        </div>
-        <div>
-          <TeamAvailability />
-        </div>
+      <h1 className="text-2xl font-bold">Team</h1>
+      <div className={`p-6 rounded-xl shadow-sm ${theme === 'dark' ? 'dark:bg-gray-800' : 'bg-white'}`}>
+        <p>Team members and their roles will be displayed here.</p>
       </div>
     </div>
   )

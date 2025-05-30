@@ -1,21 +1,14 @@
 import { useTheme } from '../components/ThemeProvider'
-import { ProductivityDashboard } from '../components/ProductivityDashboard'
-import { ProjectReports } from '../components/ProjectReports'
-import { TeamReports } from '../components/TeamReports'
-import { ExportOptions } from '../components/ExportOptions'
 
 export function ReportsPage() {
   const { theme } = useTheme()
 
   return (
-    <div className={`space-y-6 ${theme === 'dark' ? 'text-gray-100' : 'text-gray-800'}`}>
+    <div className={`space-y-6 ${theme === 'dark' ? 'dark:text-white' : ''}`}>
       <h1 className="text-2xl font-bold">Reports</h1>
-      <ProductivityDashboard />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ProjectReports />
-        <TeamReports />
+      <div className={`p-6 rounded-xl shadow-sm ${theme === 'dark' ? 'dark:bg-gray-800' : 'bg-white'}`}>
+        <p>Project reports and analytics will be displayed here.</p>
       </div>
-      <ExportOptions />
     </div>
   )
 }
